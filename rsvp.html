@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP - Yasmine & Diosvany Wedding</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="preview-cards.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>Yasmine <span class="and">&</span> Diosvany</h1>
+                <div class="date">April 26, 2026</div>
+            </div>
+            <button class="mobile-nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="event-details.html">Event Details</a></li>
+                    <li><a href="travel.html">Travel & Accommodations</a></li>
+                    <li><a href="venue.html">Venue</a></li>
+                    <li><a href="rsvp.html" class="active">RSVP</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <section class="page-content">
+        <div class="section-container">
+            <div class="page-header">
+                <h2>RSVP</h2>
+                <p>Please let us know if you'll be joining us for our special day.</p>
+                <p class="rsvp-deadline">Please RSVP by March 15, 2026</p>
+            </div>
+            
+            <form id="rsvp-form">
+                <div class="form-group">
+                    <label for="guest-names">Guest Names*</label>
+                    <input type="text" id="guest-names" name="guest-names" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="email-confirmation">
+                        <p><i class="fas fa-envelope"></i> A confirmation will be sent to your email address</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Attending?*</label>
+                    <div class="radio-group">
+                        <input type="radio" id="attending-yes" name="attending" value="yes" required>
+                        <label for="attending-yes">Joyfully Accept</label>
+                        <input type="radio" id="attending-no" name="attending" value="no">
+                        <label for="attending-no">Regretfully Decline</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="additional-guests">Number of Additional Guests</label>
+                    <select id="additional-guests" name="additional-guests">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dietary">Dietary Restrictions</label>
+                    <textarea id="dietary" name="dietary"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="song-request">Song Request (Optional)</label>
+                    <input type="text" id="song-request" name="song-request">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message to the Couple (Optional)</label>
+                    <textarea id="message" name="message"></textarea>
+                </div>
+                <div class="form-group consent-group">
+                    <input type="checkbox" id="email-consent" name="email-consent" required>
+                    <label for="email-consent">I agree to receive email confirmation of my RSVP and understand that my response will be emailed to the couple.</label>
+                </div>
+                <button type="submit" class="submit-btn">Submit RSVP</button>
+            </form>
+            
+            <div class="rsvp-info">
+                <h3>Additional Information</h3>
+                <div class="info-text">
+                    <p>If you have any questions about the RSVP process or need to update your response after submission, please contact us at:</p>
+                    <p><strong>Email:</strong> wedding@yasmineanddiosvany.com</p>
+                    <p><strong>Phone:</strong> (555) 123-4567</p>
+                </div>
+            </div>
+            
+            <div class="back-to-home">
+                <a href="index.html" class="back-link">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Yasmine & Diosvany</p>
+            <p>April 26, 2026</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
