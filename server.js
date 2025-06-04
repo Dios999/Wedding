@@ -37,7 +37,8 @@ app.post('/api/rsvp', (req, res) => {
 // API endpoint to return all RSVPs (protected by simple query token)
 app.get('/api/rsvps', (req, res) => {
   const token = req.query.token;
-  if (token !== process.env.ADMIN_TOKEN) {
+  const ADMIN_TOKEN = 'dios999';
+  if (token !== ADMIN_TOKEN) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   const rsvps = readRsvps();
