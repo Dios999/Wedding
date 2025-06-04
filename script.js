@@ -112,12 +112,27 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
             
-            // Simulate sending email (in a real application, this would send data to a server)
-            setTimeout(() => {
-                submitForm(formData);
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalBtnText;
-            }, 1500);
+            // Send form data to the local server
+            fetch('/api/rsvp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error('Request failed');
+                    return res.json();
+                })
+                .then(() => {
+                    submitForm(formData);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                })
+                .catch(err => {
+                    console.error('Submission error:', err);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                    showError('Failed to submit RSVP. Please try again later.');
+                });
         });
     }
     
@@ -178,9 +193,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const message = document.createElement('p');
         if (formData.attending === 'yes') {
-            message.textContent = `We're excited to celebrate with you, ${formData.guestNames}! Your RSVP has been received and an email confirmation has been sent to ${formData.email}.`;
+            message.textContent = `We're excited to celebrate with you, ${formData.guestNames}! Your RSVP has been received.`;
         } else {
-            message.textContent = `We're sorry you can't make it, ${formData.guestNames}. Thank you for letting us know. A confirmation has been sent to ${formData.email}.`;
+            message.textContent = `We're sorry you can't make it, ${formData.guestNames}. Thank you for letting us know.`;
         }
         message.style.marginBottom = '30px';
         
@@ -204,18 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Insert success message where the form was
         rsvpForm.parentNode.insertBefore(successDiv, rsvpForm.nextSibling);
         
-        // Log the form data (in a real application, this would be sent to a server)
+        // Log the form data (stored on the server)
         console.log('Form submitted with data:', formData);
-        
-        // In a real application, this is where you would send the data to your email service
-        console.log('Email would be sent to wedding organizer with the following data:');
-        console.log(`Guest Names: ${formData.guestNames}`);
-        console.log(`Attending: ${formData.attending}`);
-        console.log(`Email: ${formData.email}`);
-        console.log(`Additional Guests: ${formData.additionalGuests}`);
-        console.log(`Dietary Restrictions: ${formData.dietary}`);
-        console.log(`Song Request: ${formData.songRequest}`);
-        console.log(`Message: ${formData.message}`);
     }
     
     // Add smooth scrolling for navigation
