@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP Submissions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>RSVP Submissions</h2>
+    <div id="login-section">
+        <p>Please enter admin token:</p>
+        <input type="password" id="token-input" />
+        <button id="login-btn">Login</button>
+    </div>
+    <div id="rsvp-list" style="display:none;"></div>
+
+    <script>
+    document.getElementById('login-btn').addEventListener('click', function() {
+        const token = document.getElementById('token-input').value.trim();
+        fetch(`/api/rsvps?token=${encodeURIComponent(token)}`)
+            .then(res => {
+                if (!res.ok) throw new Error('Unauthorized');
+                return res.json();
+            })
+            .then(data => {
+                document.getElementById('login-section').style.display = 'none';
+                const list = document.getElementById('rsvp-list');
+                list.style.display = 'block';
+                list.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            })
+            .catch(() => alert('Invalid token'));
+    });
+    </script>
+</body>
+</html>
